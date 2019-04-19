@@ -60,25 +60,25 @@ RSpec.describe "Shops opening time", type: :feature do
     visit shop_path(open_shop.id)
     expect(page).to have_content "Opening time for #{open_shop.name}"
     within "#monday-openings-block" do
-      expect(page).to have_content "Monday : 10:30-15:00 17:00-20:00"
+      expect(page).to have_content "Monday : 10:30-15:00, 17:00-20:00"
     end
     within "#tuesday-openings-block" do
       expect(page).to have_content "Tuesday : 08:00-22:00"
     end
     within "#wednesday-openings-block" do
-      expect(page).to have_content "Wednesday : 10:30-15:00 14:00-14:30 17:00-20:00"
+      expect(page).to have_content "Wednesday : 10:30-15:00, 14:00-14:30, 17:00-20:00"
     end
     within "#thursday-openings-block" do
       expect(page).to have_content "Thursday : Closed"
     end
     within "#friday-openings-block" do
-      expect(page).to have_content "Friday : 10:30-11:00 22:00-00:00"
+      expect(page).to have_content "Friday : 10:30-11:00, 22:00-00:00"
     end
     within "#saturday-openings-block" do
       expect(page).to have_content "Saturday : Closed"
     end
     within "#sunday-openings-block" do
-      expect(page).to have_content "Sunday : 09:00-20:00 10:30-15:00"
+      expect(page).to have_content "Sunday : 09:00-20:00, 10:30-15:00"
     end
   end
 

@@ -8,7 +8,7 @@ class Day < ApplicationRecord
 
   #
   # List of week day names starting from sunday by default
-  # Pass Time#wday index for from params (sunday is 0)
+  # Pass Time#wday as a params to start week from anyday (sunday is 0)
   #
   def self.week_day_names(from: 0)
     Date::DAYNAMES.map(&:downcase).rotate(from)
