@@ -6,6 +6,13 @@ class Opening < ApplicationRecord
   validates :end_at,  presence: true
 
   #
+  # Human readable opening slot time
+  #
+  def display_opening_time
+    "slottime"
+  end
+
+  #
   # Identify an opening week day
   # Opening instance will answer to  #on_monday, #on_tuesday... like method
   #
