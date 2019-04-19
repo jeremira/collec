@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190419115002) do
+ActiveRecord::Schema.define(version: 20190419123248) do
 
   create_table "days", force: :cascade do |t|
     t.integer "order"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20190419115002) do
     t.integer "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "day_id"
+    t.index ["day_id"], name: "index_openings_on_day_id"
     t.index ["shop_id"], name: "index_openings_on_shop_id"
   end
 

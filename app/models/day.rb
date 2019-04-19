@@ -1,4 +1,6 @@
 class Day < ApplicationRecord
+  has_many :openings
+  
   validates :order,
             presence: true,
             uniqueness: true,
