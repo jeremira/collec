@@ -21,9 +21,40 @@ RSpec.describe "Shops opening time", type: :feature do
   let!(:opening9) { create :opening, shop: open_shop, day: sunday, start_at: "09h00", end_at: "20h00"}
   let!(:opening10) { create :opening, shop: open_shop, day: sunday, start_at: "10h30", end_at: "15h00"}
 
-  # before : each do
-  #   allow(Time.zone).to receive(:now) {Time.parse("Fri, 19 Apr 2019 15:14:24 UTC +00:00")}
-  # end
+  describe "Week days rotation" do
+    context "Starting on a sunday" do
+      before :each do
+        allow(Time.zone).to receive(:now) {Time.parse("Sun, 21 Apr 2019 15:14:24 UTC +00:00")}
+      end
+      it "display week days starting from sunday" do
+        visit shop_path(close_shop.id)
+        expect(page).to have_content "Opening time for #{close_shop.name}"
+        expect(page).to have_content /Sunday.*Monday.*Tuesday.*Wednesday.*Thursday.*Friday.*Saturday/
+      end
+    end
+
+    context "Starting on a Wednesday" do
+      before :each do
+        allow(Time.zone).to receive(:now) {Time.parse("Wed, 17 Apr 2019 15:14:24 UTC +00:00")}
+      end
+      it "display week days starting from Wednesday" do
+        visit shop_path(close_shop.id)
+        expect(page).to have_content "Opening time for #{close_shop.name}"
+        expect(page).to have_content /Wednesday.*Thursday.*Friday.*Saturday.*Sunday.*Monday.*Tuesday/
+      end
+    end
+
+    context "Starting on a Monday" do
+      before :each do
+        allow(Time.zone).to receive(:now) {Time.parse("Mon, 8 Apr 2019 15:14:24 UTC +00:00")}
+      end
+      it "display week days starting from Monday" do
+        visit shop_path(close_shop.id)
+        expect(page).to have_content "Opening time for #{close_shop.name}"
+        expect(page).to have_content /Monday.*Tuesday.*Wednesday.*Thursday.*Friday.*Saturday.*Sunday/
+      end
+    end
+  end
 
   scenario "Open shop" do
     visit shop_path(open_shop.id)

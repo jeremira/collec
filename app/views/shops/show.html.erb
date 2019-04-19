@@ -1,6 +1,6 @@
 <section>
   <h4><%= t(".title", name: @shop.name) %></h4>
-  <% Day.week_day_names.each do |day_name| %>
+  <% Day.week_day_names(from: Time.zone.now.wday).each do |day_name| %>
     <p id="<%= "#{day_name}-openings-block" %>">
       <strong><%= t(day_name).capitalize %> : </strong>
       <% day_openings = @shop.openings.select(&"on_#{day_name}".to_sym) %>
