@@ -16,6 +16,18 @@ RSpec.describe Opening, type: :model do
     end
   end
 
+  describe "#display_opening_time" do
+    let(:opening) {create :opening, start_at: "10h30", end_at: "15h00"}
+    let(:on_test) {opening.display_opening_time}
+
+    it "return a string" do
+      expect(on_test).to be_a String
+    end
+    it "return correct time slot format" do
+      expect(on_test).to eq "10:30-15:00"
+    end
+  end
+
   describe "Per week days" do
     describe "#on_monday" do
       let(:opening1) { create :opening, day: Day.monday }

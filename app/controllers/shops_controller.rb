@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
   def show
-    @shop = Shop.find_by(id: params[:id])
+    @shop = Shop.includes(openings: :day).find_by(id: params[:id])
   end
 end

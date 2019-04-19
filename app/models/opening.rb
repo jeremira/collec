@@ -9,7 +9,7 @@ class Opening < ApplicationRecord
   # Human readable opening slot time
   #
   def display_opening_time
-    "slottime"
+    start_at.strftime("%H:%M") + "-" + end_at.strftime("%H:%M")
   end
 
   #
