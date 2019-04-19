@@ -6,25 +6,11 @@ class Day < ApplicationRecord
             uniqueness: true,
             inclusion: { in: (0...7) }
 
-  def self.week_days
-    Date::DAYS_INTO_WEEK
-  end
-
   #
-  # Scopes
+  # List of week day names starting from sunday by default
+  # Pass Time#wday index for from params (sunday is 0)
   #
-  scope :monday,    ->() { find_or_create_by order: 0 }
-  scope :tuesday,   ->() { find_or_create_by order: 1 }
-  scope :wednesday, ->() { find_or_create_by order: 2 }
-  scope :thursday,  ->() { find_or_create_by order: 3 }
-  scope :friday,    ->() { find_or_create_by order: 4 }
-  scope :saturday,  ->() { find_or_create_by order: 5 }
-  scope :sunday,    ->() { find_or_create_by order: 6 }
-
-  #
-  # downcased full week day name
-  #
-  def full_name
-    I18n.t("week_days")[order]
+  def self.week_day_names(from: 0)
+    Date::DAYNAMES.map(&:downcase).rotate(from)
   end
 end

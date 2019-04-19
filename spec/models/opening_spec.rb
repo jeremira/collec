@@ -2,6 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Opening, type: :model do
   let(:opening) {create :opening}
+  let(:monday) {create :monday}
+  let(:tuesday) {create :tuesday}
+  let(:wednesday) {create :wednesday}
+  let(:thursday) {create :thursday}
+  let(:friday) {create :friday}
+  let(:saturday) {create :saturday}
+  let(:sunday) {create :sunday}
+
   describe "validation" do
     it "has a valid factory" do
       expect(opening).to be_valid
@@ -30,8 +38,8 @@ RSpec.describe Opening, type: :model do
 
   describe "Per week days" do
     describe "#on_monday" do
-      let(:opening1) { create :opening, day: Day.monday }
-      let(:opening2) { create :opening, day: Day.wednesday }
+      let(:opening1) { create :opening, day: monday }
+      let(:opening2) { create :opening, day: wednesday }
       it "find relevant day" do
         expect(opening1.on_monday).to be true
       end
@@ -40,8 +48,8 @@ RSpec.describe Opening, type: :model do
       end
     end
     describe "#on_tuesday" do
-      let(:opening1) { create :opening, day: Day.tuesday }
-      let(:opening2) { create :opening, day: Day.thursday }
+      let(:opening1) { create :opening, day: tuesday }
+      let(:opening2) { create :opening, day: thursday }
       it "find relevant day" do
         expect(opening1.on_tuesday).to be true
       end
@@ -50,8 +58,8 @@ RSpec.describe Opening, type: :model do
       end
     end
     describe "#on_wednesday" do
-      let(:opening1) { create :opening, day: Day.wednesday }
-      let(:opening2) { create :opening, day: Day.saturday }
+      let(:opening1) { create :opening, day: wednesday }
+      let(:opening2) { create :opening, day: saturday }
       it "find relevant day" do
         expect(opening1.on_wednesday).to be true
       end
@@ -60,8 +68,8 @@ RSpec.describe Opening, type: :model do
       end
     end
     describe "#on_thursday" do
-      let(:opening1) { create :opening, day: Day.thursday }
-      let(:opening2) { create :opening, day: Day.monday }
+      let(:opening1) { create :opening, day: thursday }
+      let(:opening2) { create :opening, day: monday }
       it "find relevant day" do
         expect(opening1.on_thursday).to be true
       end
@@ -70,8 +78,8 @@ RSpec.describe Opening, type: :model do
       end
     end
     describe "#on_friday" do
-      let(:opening1) { create :opening, day: Day.friday }
-      let(:opening2) { create :opening, day: Day.wednesday }
+      let(:opening1) { create :opening, day: friday }
+      let(:opening2) { create :opening, day: wednesday }
       it "find relevant day" do
         expect(opening1.on_friday).to be true
       end
@@ -80,8 +88,8 @@ RSpec.describe Opening, type: :model do
       end
     end
     describe "#on_saturday" do
-      let(:opening1) { create :opening, day: Day.saturday }
-      let(:opening2) { create :opening, day: Day.tuesday }
+      let(:opening1) { create :opening, day: saturday }
+      let(:opening2) { create :opening, day: tuesday }
       it "find relevant day" do
         expect(opening1.on_saturday).to be true
       end
@@ -90,8 +98,8 @@ RSpec.describe Opening, type: :model do
       end
     end
     describe "#on_sunday" do
-      let(:opening1) { create :opening, day: Day.sunday }
-      let(:opening2) { create :opening, day: Day.saturday }
+      let(:opening1) { create :opening, day: sunday }
+      let(:opening2) { create :opening, day: saturday }
       it "find relevant day" do
         expect(opening1.on_sunday).to be true
       end

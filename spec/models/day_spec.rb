@@ -49,78 +49,46 @@ RSpec.describe Day, type: :model do
     end
   end
 
-  describe "week days scopes" do
-    context "with no day" do
-      it "there is a monday" do
-        expect(Day.monday).to be_a Day
-        expect(Day.monday.order).to eq 0
-      end
-      it "there is a tuesday" do
-        expect(Day.tuesday).to be_a Day
-        expect(Day.tuesday.order).to eq 1
-      end
-      it "there is a wednesday" do
-        expect(Day.wednesday).to be_a Day
-        expect(Day.wednesday.order).to eq 2
-      end
-      it "there is no thursday" do
-        expect(Day.thursday).to be_a Day
-        expect(Day.thursday.order).to eq 3
-      end
-      it "there is a friday" do
-        expect(Day.friday).to be_a Day
-        expect(Day.friday.order).to eq 4
-      end
-      it "there is a saturday" do
-        expect(Day.saturday).to be_a Day
-        expect(Day.saturday.order).to eq 5
-      end
-      it "there is a sunday" do
-        expect(Day.sunday).to be_a Day
-        expect(Day.sunday.order).to eq 6
-      end
-    end
-    context "with days" do
-      before :each do
-        [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
-      end
-      it "there is a monday" do
-        expect(Day.monday).to be_a Day
-        expect(Day.monday.order).to eq 0
-      end
-      it "there is a tuesday" do
-        expect(Day.tuesday).to be_a Day
-        expect(Day.tuesday.order).to eq 1
-      end
-      it "there is a wednesday" do
-        expect(Day.wednesday).to be_a Day
-        expect(Day.wednesday.order).to eq 2
-      end
-      it "there is no thursday" do
-        expect(Day.thursday).to be_a Day
-        expect(Day.thursday.order).to eq 3
-      end
-      it "there is a friday" do
-        expect(Day.friday).to be_a Day
-        expect(Day.friday.order).to eq 4
-      end
-      it "there is a saturday" do
-        expect(Day.saturday).to be_a Day
-        expect(Day.saturday.order).to eq 5
-      end
-      it "there is a sunday" do
-        expect(Day.sunday).to be_a Day
-        expect(Day.sunday.order).to eq 6
-      end
-    end
-  end
+  describe ".week_day_names" do
+    context "by default" do
+      let(:on_test) {Day.week_day_names}
 
-  describe "full_name" do
-    it "return a string" do
-      expect(wednesday.full_name).to be_a String
+      it "return an Array" do
+        expect(on_test).to be_an Array
+      end
+      it "return week days name from sunday" do
+        expect(on_test).to eq ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+      end
     end
-    it "return correct week day" do
-      expect(wednesday.full_name).to eq "wednesday"
+    context "from monday" do
+      let(:on_test) {Day.week_day_names(from: 1)}
+
+      it "return an Array" do
+        expect(on_test).to be_an Array
+      end
+      it "return week days name from monday" do
+        expect(on_test).to eq ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+      end
+    end
+    context "from saturday" do
+      let(:on_test) {Day.week_day_names(from: 6)}
+
+      it "return an Array" do
+        expect(on_test).to be_an Array
+      end
+      it "return week days name from monday" do
+        expect(on_test).to eq ["saturday", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday"]
+      end
+    end
+    context "from far far away" do
+      let(:on_test) {Day.week_day_names(from: 15)}
+
+      it "return an Array" do
+        expect(on_test).to be_an Array
+      end
+      it "return week days name from monday" do
+        expect(on_test).to eq ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+      end
     end
   end
 end

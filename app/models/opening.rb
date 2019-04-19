@@ -15,8 +15,9 @@ class Opening < ApplicationRecord
   #
   # Identify an opening week day
   # Opening instance will answer to  #on_monday, #on_tuesday... like method
+  # ie : monday_opening.on_saturday => false
   #
-  Day.week_days.each do |week_day, day_order|
+  Day.week_day_names.each_with_index do |week_day, day_order|
     define_method "on_#{week_day}" do
       day.order == day_order
     end

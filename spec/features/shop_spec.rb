@@ -3,16 +3,27 @@ require "rails_helper"
 RSpec.describe "Shops opening time", type: :feature do
   let!(:open_shop)  {create :shop}
   let!(:close_shop) {create :shop}
-  let!(:opening1) { create :opening, shop: open_shop, day: Day.monday, start_at: "10h30", end_at: "15h00"}
-  let!(:opening2) { create :opening, shop: open_shop, day: Day.monday, start_at: "17h00", end_at: "20h00"}
-  let!(:opening3) { create :opening, shop: open_shop, day: Day.tuesday, start_at: "08h00", end_at: "22h00"}
-  let!(:opening4) { create :opening, shop: open_shop, day: Day.wednesday, start_at: "10h30", end_at: "15h00"}
-  let!(:opening5) { create :opening, shop: open_shop, day: Day.wednesday, start_at: "14h00", end_at: "14h30"}
-  let!(:opening6) { create :opening, shop: open_shop, day: Day.wednesday, start_at: "17h00", end_at: "20h00"}
-  let!(:opening7) { create :opening, shop: open_shop, day: Day.friday, start_at: "10h30", end_at: "11h00"}
-  let!(:opening8) { create :opening, shop: open_shop, day: Day.friday, start_at: "22h00", end_at: "00h00"}
-  let!(:opening9) { create :opening, shop: open_shop, day: Day.sunday, start_at: "09h00", end_at: "20h00"}
-  let!(:opening10) { create :opening, shop: open_shop, day: Day.sunday, start_at: "10h30", end_at: "15h00"}
+  let(:monday) {create :monday}
+  let(:tuesday) {create :tuesday}
+  let(:wednesday) {create :wednesday}
+  let(:thursday) {create :thursday}
+  let(:friday) {create :friday}
+  let(:saturday) {create :saturday}
+  let(:sunday) {create :sunday}
+  let!(:opening1) { create :opening, shop: open_shop, day: monday, start_at: "10h30", end_at: "15h00"}
+  let!(:opening2) { create :opening, shop: open_shop, day: monday, start_at: "17h00", end_at: "20h00"}
+  let!(:opening3) { create :opening, shop: open_shop, day: tuesday, start_at: "08h00", end_at: "22h00"}
+  let!(:opening4) { create :opening, shop: open_shop, day: wednesday, start_at: "10h30", end_at: "15h00"}
+  let!(:opening5) { create :opening, shop: open_shop, day: wednesday, start_at: "14h00", end_at: "14h30"}
+  let!(:opening6) { create :opening, shop: open_shop, day: wednesday, start_at: "17h00", end_at: "20h00"}
+  let!(:opening7) { create :opening, shop: open_shop, day: friday, start_at: "10h30", end_at: "11h00"}
+  let!(:opening8) { create :opening, shop: open_shop, day: friday, start_at: "22h00", end_at: "00h00"}
+  let!(:opening9) { create :opening, shop: open_shop, day: sunday, start_at: "09h00", end_at: "20h00"}
+  let!(:opening10) { create :opening, shop: open_shop, day: sunday, start_at: "10h30", end_at: "15h00"}
+
+  # before : each do
+  #   allow(Time.zone).to receive(:now) {Time.parse("Fri, 19 Apr 2019 15:14:24 UTC +00:00")}
+  # end
 
   scenario "Open shop" do
     visit shop_path(open_shop.id)
