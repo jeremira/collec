@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190419114650) do
+ActiveRecord::Schema.define(version: 20190419115002) do
 
   create_table "days", force: :cascade do |t|
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order"], name: "index_days_on_order", unique: true
+  end
+
+  create_table "openings", force: :cascade do |t|
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_openings_on_shop_id"
   end
 
   create_table "shops", force: :cascade do |t|
