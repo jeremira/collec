@@ -1,4 +1,8 @@
 en:
+  shops:
+    show:
+      title: "Opening time for %{name}"
+      no_shop_title: "Sorry, no shop were found."
   week_days:
     - "monday"
     - "tuesday"

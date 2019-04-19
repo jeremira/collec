@@ -1,10 +1,14 @@
 class Day < ApplicationRecord
   has_many :openings
-  
+
   validates :order,
             presence: true,
             uniqueness: true,
             inclusion: { in: (0...7) }
+
+  def self.week_days
+    Date::DAYS_INTO_WEEK
+  end
 
   #
   # Scopes

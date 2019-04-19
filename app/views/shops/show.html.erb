@@ -1,0 +1,15 @@
+<% if @shop %>
+  <section>
+    <h4><%= t(".title", name: @shop.name) %></h4>
+    <%= Day.week_days.each do |day_name, day_order| %>
+      <p>
+        <strong><%= day_name.capitalize %> : </strong>
+        <% @shop.openings.select(&"on_#{day_name}".to_sym).each do |opening| %>
+          <%= "#{opening.start_at} - #{opening.end_at}" %>
+        <% end %>
+      </p>
+    <% end %>
+  </section>
+<% else %>
+  <p><%=  t(".no_shop_title") %></p>
+<% end %>
