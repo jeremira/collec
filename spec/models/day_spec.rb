@@ -48,4 +48,13 @@ RSpec.describe Day, type: :model do
       expect(eighteday).not_to be_valid
     end
   end
+
+  describe "full_name" do
+    it "return a string" do
+      expect(wednesday.full_name).to be_a String
+    end
+    it "return correct week day" do
+      expect(wednesday.full_name).to eq "wednesday"
+    end
+  end
 end
