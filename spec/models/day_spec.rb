@@ -49,6 +49,72 @@ RSpec.describe Day, type: :model do
     end
   end
 
+  describe "week days scopes" do
+    context "with no day" do
+      it "there is a monday" do
+        expect(Day.monday).to be_a Day
+        expect(Day.monday.order).to eq 0
+      end
+      it "there is a tuesday" do
+        expect(Day.tuesday).to be_a Day
+        expect(Day.tuesday.order).to eq 1
+      end
+      it "there is a wednesday" do
+        expect(Day.wednesday).to be_a Day
+        expect(Day.wednesday.order).to eq 2
+      end
+      it "there is no thursday" do
+        expect(Day.thursday).to be_a Day
+        expect(Day.thursday.order).to eq 3
+      end
+      it "there is a friday" do
+        expect(Day.friday).to be_a Day
+        expect(Day.friday.order).to eq 4
+      end
+      it "there is a saturday" do
+        expect(Day.saturday).to be_a Day
+        expect(Day.saturday.order).to eq 5
+      end
+      it "there is a sunday" do
+        expect(Day.sunday).to be_a Day
+        expect(Day.sunday.order).to eq 6
+      end
+    end
+    context "with days" do
+      before :each do
+        [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
+      end
+      it "there is a monday" do
+        expect(Day.monday).to be_a Day
+        expect(Day.monday.order).to eq 0
+      end
+      it "there is a tuesday" do
+        expect(Day.tuesday).to be_a Day
+        expect(Day.tuesday.order).to eq 1
+      end
+      it "there is a wednesday" do
+        expect(Day.wednesday).to be_a Day
+        expect(Day.wednesday.order).to eq 2
+      end
+      it "there is no thursday" do
+        expect(Day.thursday).to be_a Day
+        expect(Day.thursday.order).to eq 3
+      end
+      it "there is a friday" do
+        expect(Day.friday).to be_a Day
+        expect(Day.friday.order).to eq 4
+      end
+      it "there is a saturday" do
+        expect(Day.saturday).to be_a Day
+        expect(Day.saturday.order).to eq 5
+      end
+      it "there is a sunday" do
+        expect(Day.sunday).to be_a Day
+        expect(Day.sunday.order).to eq 6
+      end
+    end
+  end
+
   describe "full_name" do
     it "return a string" do
       expect(wednesday.full_name).to be_a String
